@@ -14,13 +14,22 @@ function random(min,max) {
 }
 
 
-// define Ball prototype as a function
-class Ball {
-  constructor(x, y, velX, velY, color, size) {
+// define Shape class
+class Shape {
+  constructor(x, y, velX, velY, exists) {
     this.x = x;
     this.y = y;
     this.velX = velX;
     this.velY = velY;
+    this.exists = exists;
+  }
+}
+
+// define Ball class
+class Ball extends Shape {
+  constructor(x, y, velX, velY, exists, color, size) {
+    super(x, y, velX, velY, exists);
+
     this.color = color;
     this.size = size;
   }
@@ -81,6 +90,7 @@ while (balls.length < 25) {
     random(0 + size, height - size),
     random(-7, 7),
     random(-7, 7),
+    true,
     'rgb(' + random(0, 255) + ',' + random(0, 255) + ',' + random(0, 255) + ')',
     size
   );
