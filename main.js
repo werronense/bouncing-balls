@@ -11,6 +11,15 @@ const height = canvas.height = window.innerHeight;
 const counter = document.querySelector('p');
 let ballCount = 0;
 
+// colors
+const neonBlue = 'rgb(7, 237, 233)';
+const neonGreen = 'rgb(6, 217, 27)';
+
+function pickColor(color1, color2) {
+  return (Math.random() > 0.5 ? color1 : color2);
+}
+
+
 // function to update counter
 function updateCounter(countElement) {
   text = countElement.textContent;
@@ -84,8 +93,8 @@ class Ball extends Shape {
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < this.size + balls[j].size) {
-          balls[j].color = this.color = 'rgb(' + random(0, 255) + ',' +
-          random(0, 255) + ',' + random(0, 255) + ')';
+          balls[j].color = balls[j].color == neonBlue ? neonGreen : neonBlue;
+          this.color = this.color == neonBlue ? neonGreen : neonBlue;
         }
       }
     }
@@ -173,7 +182,7 @@ while (balls.length < 25) {
     random(-7, 7),
     random(-7, 7),
     true,
-    'rgb(' + random(0, 255) + ',' + random(0, 255) + ',' + random(0, 255) + ')',
+    pickColor(neonBlue, neonGreen),
     size
   );
 
