@@ -1,15 +1,18 @@
+// variable declarations
 // setup canvas
-
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
 const width = canvas.width = window.innerWidth;
 const height = canvas.height = window.innerHeight;
 
+
+// setup counter
 const counter = document.querySelector('p');
+let ballCount = 0;
+
 
 // function to generate random number
-
 function random(min,max) {
   const num = Math.floor(Math.random()*(max-min)) + min;
   return num;
@@ -26,6 +29,7 @@ class Shape {
     this.exists = exists;
   }
 }
+
 
 // define Ball class
 class Ball extends Shape {
@@ -81,6 +85,8 @@ class Ball extends Shape {
   }
 }
 
+
+// define EvilCircle class
 class EvilCircle extends Shape {
   constructor(x, y, velX, velY, exists, color, size) {
     super(x, y, velX, velY, exists);
@@ -125,6 +131,7 @@ class EvilCircle extends Shape {
 
           if (distance < this.size + balls[j].size) {
             balls[j].exists = false;
+            ballCount -= 1;
           }
         }
       }
@@ -165,6 +172,7 @@ while (balls.length < 25) {
   balls.push(ball);
 }
 
+
 // instantiate the evilCircle
 const evilCircle = new EvilCircle(
   random(10, width - 10),
@@ -178,9 +186,11 @@ const evilCircle = new EvilCircle(
 
 evilCircle.setControls();
 
-// initialize ballCount variable and display count
-let ballCount = balls.length;
+
+// set ballCount variable and display count
+ballCount = balls.length;
 counter.textContent += ballCount;
+
 
 // animation loop
 function loop() {
@@ -201,6 +211,7 @@ function loop() {
 
   requestAnimationFrame(loop);
 }
+
 
 // call the loop function to run the animation
 loop();
