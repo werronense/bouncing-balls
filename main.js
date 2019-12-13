@@ -6,6 +6,8 @@ const ctx = canvas.getContext('2d');
 const width = canvas.width = window.innerWidth;
 const height = canvas.height = window.innerHeight;
 
+const counter = document.querySelector('p');
+
 // function to generate random number
 
 function random(min,max) {
@@ -176,7 +178,11 @@ const evilCircle = new EvilCircle(
 
 evilCircle.setControls();
 
+// initialize ballCount variable and display count
+let ballCount = balls.length;
+counter.textContent += ballCount;
 
+// animation loop
 function loop() {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
   ctx.fillRect(0, 0, width, height);
