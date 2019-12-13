@@ -11,6 +11,12 @@ const height = canvas.height = window.innerHeight;
 const counter = document.querySelector('p');
 let ballCount = 0;
 
+// function to update counter
+function updateCounter(countElement) {
+  text = countElement.textContent;
+  countElement.textContent = text.slice(0, text.length - 2) + ballCount;
+}
+
 
 // function to generate random number
 function random(min,max) {
@@ -132,6 +138,7 @@ class EvilCircle extends Shape {
           if (distance < this.size + balls[j].size) {
             balls[j].exists = false;
             ballCount -= 1;
+            updateCounter(counter);
           }
         }
       }
