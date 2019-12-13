@@ -14,7 +14,8 @@ let ballCount = 0;
 // function to update counter
 function updateCounter(countElement) {
   text = countElement.textContent;
-  countElement.textContent = text.slice(0, text.length - 2) + ballCount;
+  countElement.textContent = text.slice(0, text.length - 2) +
+    ballCount.toString().padStart(2, "0");
 }
 
 
